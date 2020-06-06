@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="beep_data" version="1.3.0" audacityversion="2.2.1" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.0000000000" zoom="625.2483350718" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milissegundos" frequencyformat="Hz" bandwidthformat="oitavas">
+	<tags>
+		<tag name="ARTIST" value="Gustavo Rubin"/>
+		<tag name="YEAR" value="2020"/>
+		<tag name="TITLE" value="Beep"/>
+	</tags>
+	<wavetrack name="Faixa de Áudio" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="43448">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000910.au" len="43448" min="-0.749618" max="0.891251" rms="0.1398"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>
