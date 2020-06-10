@@ -6,6 +6,8 @@ const mqttoptions = { username: 'agent', password: 'agentagent' }
 const mqtt = require('mqtt');
 const mqttclient = mqtt.connect('mqtt://127.0.0.1:1883', mqttoptions);
 
+var ledCountState = 0;
+
 mqttclient.on('connect', function () {
   publishOnAllLeds('1');
   setTimeout(() => {
@@ -21,7 +23,17 @@ mqttclient.on('connect', function () {
 
 mqttclient.on('message', function (topic, message) {
   if (topic.startsWith('waitercaller/desk/')) {
-    mqttclient.publish('waitercaller/hall', '1');
+    if (message == '1') {
+      ledCountState++;
+    }
+    if (message == '0') {
+      ledCountState--;
+    }
+    if (ledCountState > 0) {
+      mqttclient.publish('waitercaller/hall', '1');
+    } else {
+      mqttclient.publish('waitercaller/hall', '0');
+    }  
   }
 })
 
