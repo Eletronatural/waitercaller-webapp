@@ -1,0 +1,131 @@
+body {
+	padding-top: 30px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: black;
+	margin: 5px;
+	background: #a0a0a0 url("../img/background.jpg") no-repeat fixed center;
+	background-size: cover;
+}
+
+#start-page {
+  position: fixed; /* Sit on top of the page content */
+  display: table; /* Hidden by default */
+  width: 90%; /* Full width (cover the whole page) */
+  height: 80%; /* Full height (cover the whole page) */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  border: 20px dashed #f69c55;
+  background-color: rgba(90,100,200,0.8); /* Black background with opacity */
+  /*z-index: 1; *//* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#start-page-text {
+  display: table-cell;
+  text-align: center;
+  font-size: 40px;
+  vertical-align: middle;
+  color: #fff;
+}
+
+#desk-notification {
+  position: absolute;
+  display: none;
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(90,100,200,0.8);
+  border-radius: 50%;
+  border: 15px solid #f69c55;
+}
+
+#desk-notification-number {
+  display: table-cell;
+  text-align: center;
+  font-size: 150px;
+  vertical-align: middle;
+  color: #fff;
+}
+
+@keyframes blinkOrange {
+  from {background-color: rgb(175, 240, 90);}
+  to {background-color: orange;}
+}
+
+.tabledesks {
+  width: 100%;
+  height: 70%;
+	font-size: 40px;
+	text-align: center;
+  padding: 5px;
+  border-collapse: separate;
+	border-radius: 15px;
+}
+
+td.tabledesks {
+  width: auto;
+	background: #666666;
+  border: #000000 solid 3px;
+}
+
+.tablehall {
+  width: 100%;
+  padding: 5px;
+  height: 30%;
+	border-radius: 12px;
+	color: #ffffff;
+	background: #404040;
+	border: #000000 solid 3px;
+}
+
+.tableweather {
+  width: 100%;
+  height: 70%;
+  font-size: 30px;
+	text-align: right;
+}
+
+.tableweathertext {
+  text-align: left;
+}
+
+#desks-panel {
+  float: left;
+  margin-left: 1%;
+  width: 80%;
+  height: 280px;
+}
+
+#rightside {
+  float: left;
+  width: 15%;
+  height: 280px;
+}
+
+#clock-panel {
+  float: left;
+  width: 100%;
+  height: 20%;
+}
+
+#txtClock {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 0%;
+}
+
+#weather-panel {
+  float: left;
+  width: 100%;
+  height: 80%;
+}
+
+img.weatherimage {
+  width: 110px;
+  height: 100px;
+}
