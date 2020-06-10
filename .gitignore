@@ -1,3 +1,6 @@
 ### Eclipse ###
 .project
 .settings
+
+### Visual Code ###
+waitercallerworkspace.code-workspace
