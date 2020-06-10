@@ -23,4 +23,4 @@ If you have not builded waitercaller image, do this:
 
 And create and run a container:
 
-```docker run --name waitercaller --network="host" --restart=always eletronatural/waitercaller:latest```
+```docker run -d --name waitercaller --network="host" --restart=always eletronatural/waitercaller:latest```
