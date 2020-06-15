@@ -105,6 +105,7 @@ function checkTime(i) {
 }
 
 function start() {
+    document.getElementById('weather-panel').style.display = "none";
     clock();
     MQTTConnect();
 }
