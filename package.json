@@ -1,0 +1,23 @@
+{
+  "name": "waitercaller-webapp",
+  "version": "0.0.1",
+  "description": "Web Application for Waiter Caller",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eletronatural/waitercaller-webapp.git"
+  },
+  "author": "Gustavo Rubin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eletronatural/waitercaller-webapp/issues"
+  },
+  "homepage": "https://github.com/Eletronatural/waitercaller-webapp#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mqtt": "^4.1.0"
+  }
+}
