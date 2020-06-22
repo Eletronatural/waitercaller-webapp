@@ -3,7 +3,7 @@
 	 */
 var mqtt;
 var reconnectTimeout = 2000;
-var host = "127.0.0.1";
+var host = "192.168.0.100";
 var port = 1884;
 
 function onConnect() {
@@ -77,7 +77,7 @@ function MQTTConnect() {
         + parseInt(Math.random() * 1e5));
     var options = {
         userName: "agent",
-        password: "agentagent",
+        password: "agent707",
         timeout: 10,
         keepAliveInterval: 10,
         onSuccess: onConnect,
