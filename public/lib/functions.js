@@ -3,13 +3,14 @@
 	 */
 var mqtt;
 var reconnectTimeout = 2000;
-var host = "192.168.0.100";
+var host = "192.168.1.100";
 var port = 1884;
 
 function onConnect() {
     // MQTT Broker connection
     console.log("Connected");
     mqtt.subscribe("waitercaller/desk/#");
+    mqtt.subscribe("waitercaller/weather/#");
 }
 
 function onError(message) {
@@ -50,6 +51,12 @@ function screenNotifyOff() {
     notify.style.display = "none";
 }
 
+function weatherUpdate(weatherObj) {
+    document.getElementById("weatherTableTemperatureValue").innerHTML = weatherObj.temperature;
+    document.getElementById("weatherTableHumidityValue").innerHTML = weatherObj.humidity;
+    document.getElementById("weatherTableAltitudeValue").innerHTML = weatherObj.altitude;    
+}
+
 function onMessageArrived(msg) {
     console
         .log("Message: " + msg.destinationName + "="
@@ -67,6 +74,20 @@ function onMessageArrived(msg) {
         } else {
             deskOff(deskNumber);
         }
+    }
+
+    if (msg.destinationName.startsWith("waitercaller/weather/")) {
+        var weatherSensor = msg.destinationName.replace("waitercaller/weather/",
+            "");
+        console.log("weatherSensor=" + weatherSensor);
+
+        let weatherJson = JSON.parse(msg.payloadString);
+
+        weatherJson.temperature = (weatherJson.temperature | 0) + " ºC";
+        weatherJson.humidity = (weatherJson.humidity | 0) + " %";
+        weatherJson.altitude = (weatherJson.altitude | 0) + " m";        
+
+        weatherUpdate(weatherJson);
     }
 }
 
@@ -105,7 +126,7 @@ function checkTime(i) {
 }
 
 function start() {
-    document.getElementById('weather-panel').style.display = "none";
+    // document.getElementById('weather-panel').style.display = "none";
     clock();
     MQTTConnect();
 }
