@@ -3,7 +3,7 @@
 	 */
 var mqtt;
 var reconnectTimeout = 2000;
-var host = "192.168.1.100";
+var host = window.location.hostname;
 var port = 1884;
 
 function onConnect() {
@@ -58,9 +58,6 @@ function weatherUpdate(weatherObj) {
 }
 
 function onMessageArrived(msg) {
-    console
-        .log("Message: " + msg.destinationName + "="
-            + msg.payloadString);
 
     if (msg.destinationName.startsWith("waitercaller/desk/")) {
         var deskNumber = msg.destinationName.replace("waitercaller/desk/",
@@ -79,7 +76,6 @@ function onMessageArrived(msg) {
     if (msg.destinationName.startsWith("waitercaller/weather/")) {
         var weatherSensor = msg.destinationName.replace("waitercaller/weather/",
             "");
-        console.log("weatherSensor=" + weatherSensor);
 
         let weatherJson = JSON.parse(msg.payloadString);
 
