@@ -54,7 +54,7 @@ function screenNotifyOff() {
 function weatherUpdate(weatherObj) {
     document.getElementById("weatherTableTemperatureValue").innerHTML = weatherObj.temperature;
     document.getElementById("weatherTableHumidityValue").innerHTML = weatherObj.humidity;
-    document.getElementById("weatherTableAltitudeValue").innerHTML = weatherObj.altitude;    
+    document.getElementById("weatherTableAltitudeValue").innerHTML = weatherObj.altitude;
 }
 
 function onMessageArrived(msg) {
@@ -81,7 +81,7 @@ function onMessageArrived(msg) {
 
         weatherJson.temperature = (weatherJson.temperature | 0) + " ºC";
         weatherJson.humidity = (weatherJson.humidity | 0) + " %";
-        weatherJson.altitude = (weatherJson.altitude | 0) + " m";        
+        weatherJson.altitude = (weatherJson.altitude | 0) + " m";
 
         weatherUpdate(weatherJson);
     }
@@ -121,8 +121,52 @@ function checkTime(i) {
     return i;
 }
 
+function systemMonitoring() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "http://" + host + ":8080/waitercaller/system-monitor", true);
+    xhttp.onreadystatechange = function () {
+        if (this.status == 0) {
+            changeMonitorLed(false, 'serverConnectionLed');
+        } else if (this.status == 200) {
+            changeMonitorLed(true, 'serverConnectionLed');
+            if (this.responseText === 'true') {
+                changeMonitorLed(true, 'routerConnectionLed');
+            } else {
+                changeMonitorLed(false, 'routerConnectionLed');
+            }
+        }
+    };
+    xhttp.send();
+    setTimeout(systemMonitoring, 1000);
+}
+
+function checkWebApp(ip) {
+    let img = new Image();
+
+    img.onload = function () {
+        changeMonitorLed(true, 'serverConnectionLed');
+    };
+    img.onerror = function () {
+        changeMonitorLed(false, 'serverConnectionLed');
+    };
+
+    img.src = "http://" + ip + "/img/favicon.ico?q=" + new Date().getTime();
+}
+
+function changeMonitorLed(state, elementId) {
+    let monitorLed = document.getElementById(elementId);
+    let color;
+    if (state) {
+        color = "rgb(150, 240, 100)";
+    } else {
+        color = "rgb(240, 50, 50)";
+    }
+    monitorLed.style.background = color;
+}
+
 function start() {
-    // document.getElementById('weather-panel').style.display = "none";
+    document.getElementById('weather-panel').style.display = "none";
     clock();
     MQTTConnect();
+    systemMonitoring();
 }
