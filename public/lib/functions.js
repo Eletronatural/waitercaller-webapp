@@ -165,7 +165,7 @@ function changeMonitorLed(state, elementId) {
 }
 
 function start() {
-    document.getElementById('weather-panel').style.display = "none";
+    /* document.getElementById('weather-panel').style.display = "none"; */
     clock();
     MQTTConnect();
     systemMonitoring();
