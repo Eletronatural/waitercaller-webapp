@@ -1,6 +1,25 @@
 const express = require('express');
 const app = express();
 
+setInterval(systemMonitoring, 1500);
+
+// For ping function
+var pingResponse;
+var exec = require('child_process').exec;
+function systemMonitoring() {
+  exec("ping -c 3 192.168.0.1", puts);
+}
+
+function puts(error, stdout, stderr) {
+  let positionReceived = stdout.search("received");
+  let receivedPackages = stdout.slice(positionReceived - 2, positionReceived);
+  if (receivedPackages < 3) {
+    pingResponse = false;
+  } else {
+    pingResponse = true;
+  }
+}
+
 const mqttoptions = { username: 'agent', password: 'agent707' }
 
 const mqtt = require('mqtt');
@@ -18,7 +37,7 @@ mqttclient.on('connect', function () {
       }
     });
   }, 1000);
-  
+
 })
 
 mqttclient.on('message', function (topic, message) {
@@ -33,7 +52,7 @@ mqttclient.on('message', function (topic, message) {
       mqttclient.publish('waitercaller/hall', '1');
     } else {
       mqttclient.publish('waitercaller/hall', '0');
-    }  
+    }
   }
 })
 
@@ -63,12 +82,12 @@ function publishOnAllLeds(state) {
 
 app.use(express.static('public'));
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-
 app.get('/waitercaller', function (req, res) {
   res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/waitercaller/system-monitor', function (req, res) {
+  res.send(pingResponse);
 });
 
 app.listen(8080, function () {

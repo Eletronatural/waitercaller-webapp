@@ -5,8 +5,9 @@
 	<title>Waiter Caller</title>
 	<link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico' />
 	<link rel="stylesheet" href="css/styles.css">
+	<script src="lib/jquery.min.js" type="text/javascript"></script>
 	<script src="lib/mqttws31.min.js" type="text/javascript"></script>
-	<script src="lib/functions.js" type="text/javascript"></script>
+	<script src="lib/functions.js" type="text/javascript"></script>	
 </head>
 
 <body onload="start()">
@@ -67,6 +68,18 @@
 							<td><img class="weatherimage" src="img/t-altitude-symbol.png"></td>
 							<td class="tableweathertext" id="weatherTableAltitudeValue">N/A</td>
 						</tr>
+					</table>
+				</div>
+				<div id="system-monitor">
+					<table class="tablemonitor">
+						<tr>
+							<td class="tablemonitor" id="routerConnectionLed"></td>
+							<td class="tablemonitorledtext" id="routerConnectionLedText">Network Connection</td>
+						</tr>
+						<tr>
+							<td class="tablemonitor" id="serverConnectionLed"></td>
+							<td class="tablemonitorledtext" id="serverConnectionLedText">Server Connection</td>
+						</tr>						
 					</table>
 				</div>
 			</div>
