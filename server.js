@@ -7,7 +7,7 @@ setInterval(systemMonitoring, 1500);
 var pingResponse;
 var exec = require('child_process').exec;
 function systemMonitoring() {
-  exec("ping -c 3 192.168.0.1", puts);
+  exec("ping -c 3 192.168.1.1", puts);
 }
 
 function puts(error, stdout, stderr) {
